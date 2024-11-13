@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nombre e información de juegos</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, white, gray);
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lista de juegos e información</h1>
+</header>
+
+<main>
+    <section class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar Juego">
+    </section>
+    <section>
+        <h2>Datos de los juegos</h2>
+        <table id="juegoTable">
+            <thead>
+                <tr>
+                    <th>Juego</th>
+                    <th>Plataforma</th>
+                    <th>Info</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las filas de la tabla se generarán aquí -->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+    const juegoData = [
+        { Juego: "Minecraft", plataforma: "PC, Xbox One S/X, Nintendo Switch, PS3, PS4, PS5", Info: "El juego se centra en la colocación y destrucción de bloques, siendo que este se compone de objetos tridimensionales cúbicos, colocados sobre un patrón de rejilla fija. Estos cubos o bloques representan principalmente distintos elementos de la naturaleza, como tierra, piedra, minerales, troncos, entre otros. Los jugadores son libres de desplazarse por su entorno y modificarlo mediante la creación, recolección y transporte de los bloques que componen al juego, los cuales solo pueden ser colocados respetando la rejilla fija del juego.​ Los jugadores son capaces de crear además las denominadas «granjas», que son estructuras y mecanismos para conseguir un fin, aprovechándose de ciertas mecánicas del juego. En ciertos casos, algunas de ellas se terminan implementando al juego, como el observador. En el juego se pueden encontrar estructuras especiales como aldeas, galerías mineras, templos marinos, pirámides y templos selváticos. ", videoSrc: "https://www.youtube.com/embed/jMe3tdyjouM" },
+        { Juego: "GTA 5", plataforma: "PlayStation 5, PlayStation 4, PlayStation 3, Xbox One, Xbox 360, Microsoft Windows, Xbox Series X|S", Info: "Grand Theft Auto V es un videojuego de acción y aventura en un mundo abierto. Un joven estafador callejero, un ladrón de bancos retirado y un psicópata aterrador se ven involucrados con lo peor y más desquiciado del mundo criminal, del gobierno de los EE. UU. y de la industria del espectáculo, y tendrán que llevar a cabo una serie de peligrosos golpes para sobrevivir en una ciudad implacable ", videoSrc: "https://www.youtube.com/embed/QkkoHAzjnUs" },
+        { Juego: "Free Fire", plataforma: "PlayStation 4, Xbox One s/x, Microsoft Windows", Info: "Garena Free Fire es un juego de disparos en tercera persona con un estilo Battle Royale. Se juega únicamente en tercera persona. El juego consiste en que hasta 50 jugadores caen desde un paracaídas en una isla o diversos lugares en busca de armas y equipamiento para matar a los demás jugadores.", videoSrc: "https://youtu.be/Cw9O7OtTmhY?si=PqMIH3dtdmMRzJEV" },
+        { Juego: "GTA 4", plataforma: "Android y IOS", Info: "GTA IV te lleva a Liberty City de la mano de Niko Bellic. Vuelve a estar ambientado en Liberty City ya en el año 2008, pero esta vez sigue a un veterano de guerra llamado Niko Bellic. Persigue el Sueño Americano, pero quiere buscar al hombre que le traicionó en la guerra hace 10 años.", videoSrc: "https://youtu.be/M80K51DosFo?si=0wvGGz-waaNOCbN2" },
+        { Juego: "Pokemon GO", plataforma: "Android y IOS", Info: " El juego consiste en buscar y capturar personajes de la saga Pokémon escondidos en ubicaciones del mundo real y luchar con ellos, lo que implica desplazarse físicamente por las calles de la ciudad para progresar.", videoSrc: "https://youtu.be/yQCREgz4tQY?si=y3QdsqvP4XGV7_b1" },
+        { Juego: "Mortal Kombat 1", plataforma: "PlayStation 5, Xbox Series X|S, Nintendo Switch y PC", Info: "En una misteriosa isla, internada en los mares de China, y desconocida por el resto del mundo, los luchadores sobrenaturales luchan por el destino de la Tierra. Ese gran torneo es conocido como Mortal Kombat y ha sido por años una competición de honor y gloria, la saga regresa con nuevos personajes y escenarios.", videoSrc: "https://youtu.be/rRkavvt5x8o?si=D5Rzha4ubVZO0Nl2" },
+        { Juego: "Fortnite", plataforma: "Xbox One, Xbox Series X/S, PlayStation 5, PlayStation 4, PlayStation 3, Android y iOS", Info: " Este juego permite hasta a 100 personas participar juntas en una partida. Los jugadores se dejan caer en el mapa del juego y deben competir para ser el último en quedar de pie matando a todos los demás jugadores en el juego.", videoSrc: "https://youtu.be/WJW-bzXZM8M?si=xt_xGwtj1_NLmHwX" },
+        { Juego: "GTA 3", plataforma: "Android, PlayStation 2, PlayStation 4, PlayStation 3, Microsoft Windows, iOS, Xbox, Mac OS, Fire OS", Info: "La historia sigue a Claude, un criminal en la ciudad ficticia de Liberty City. Un joven ladrón de bancos escapa de la custodia policial y se abre camino a través de la escalera mafiosa de Liberty City, EE. UU., asolada por el crimen. Después de que la novia de un joven criminal lo traiciona en un robo a un banco.", videoSrc: "https://youtu.be/agACYOeuX7k?si=gGkn9QiIavhPT53O" },
+        { Juego: "GTA Vice City", plataforma: "Android, Microsoft Windows, PlayStation 2, PlayStation 4, PlayStation 3, iOS, Xbox, Mac OS, Fire OS", Info: "Después de salir de prisión, Tommy Vercetti, un ex mafioso, es enviado a la soleada y peligrosa Vice City. Cuando un trato dentro de la ciudad sale terriblemente mal, Tommy se embarca en un viaje por la ciudad para reclamar lo que es suyo por derecho, sin importar cuántas vidas cueste.", videoSrc: "https://youtu.be/m8oQllwqw_I?si=wI50a91zt_TlI4LP" },
+        { Juego: "GTA San Andreas", plataforma: "Android, PlayStation 2, PlayStation 4, PlayStation 3", Info: "La trama de Grand Theft Auto: San Andreas está ambientada en 1992, y cuenta la historia de Carl Johnson, más conocido como CJ, quien decide volver a Los Santos tras cinco años de haberse ausentado en Liberty City después de enterarse del asesinato de su madre.", videoSrc: "https://youtu.be/yOzcbtsw_pQ?si=4H6FFhU0p5ErP2yU" },
+        { Juego: "avatar the game", plataforma: "Android, PlayStation 2, pc, PlayStation 3,wi y mas", Info: "vas a terner los 2 roles de rda y navi y vas a tern que hacer miciones ademas de que vas a poder atacar facciones de la rda si eres navi o si eresa de la rda facciones navi vas a poder usar todas las naves de pandora mientras vas pasando el mundo  el juego dura aproccimadamete 8 horas ", videoSrc: "https://youtu.be/xw5lV0KgW20?si=oZs8T-4emk_YYS6b" },
+		{ Juego: "red dead redeption 2", plataforma: " PlayStation , PlayStation 4, PlayStation 3, pc , pleyStation 5", Info: "es un juego a mundo avierto de  rockstar games  ess un vaquero del  biejo oeste ademas el juego es casi realkista podiendo despedasar a una persona de un escopetaso es muy realista ten mi opinien le daria 5/5 esrellas ademas de que puedes robar y otras cosas ", videoSrc: "https://www.youtube.com/watch?v=MmB9b5njVbA" },
+		{ Juego: "forza orizon", plataforma: "Android, xbox one y series x/s, PlayStation 4, PlayStation 3", Info: " es de mundo avierto y tienens que hacer carreras es buen juego para cuando estes aburrdo ", videoSrc: "https://youtu.be/5xy4n73WOMM?si=ELOkdh64Md9I32GH" },
+		{ Juego: "clash royal", plataforma: "Android y ios", Info: "Clash Royale es un videojuego de estrategia en línea para dispositivos móviles, creado por la compañía finlandesa Supercell.​ Fue lanzado globalmente el 2 de marzo de 2016.​ Es un videojuego freemium de estrategia en tiempo real basado en los personajes de Clash of Clans.​ " , videoSrc: "https://youtu.be/1RC1yxqTTd8?si=CI4TfSToSYiOFVlq" },
+		{ Juego: "CLASH OF CLANS", plataforma: "Android y ios", Info: "Clash of Clans, también conocido como CoC, es un videojuego de estrategia y de construcción de aldeas en línea, para dispositivos móviles con plataformas de iOS y Android. Fue desarrollado por Supercell y lanzado para dispositivos iOS el 2 de agosto del 2012, y el 8 de octubre para dispositivos Android.​", videoSrc: "https://youtu.be/YWQjWdQ6tOA?si=82HCFvD-AW9vbHPM" },
+		{ Juego: "hitman 2", plataforma: "PlayStation 4, Microsoft Windows, Xbox One, GeForce Now, Google Stadia", Info: "Hitman 2 es un videojuego de acción y sigilo desarrollado por IO Interactive y distribuido por Warner Bros. Games, para las plataformas PlayStation 4, Xbox One y Microsoft Windows.​ Es la secuela directa del videojuego Hitman de 2016 y el séptimo título correspondiente con la saga Hitman. ", videoSrc: "https://youtu.be/R8aRCwbZGek?si=l07gy3cKV7xS5_nk" },
+		{ Juego: "hitman 3", plataforma: " PlayStation 5, PlayStation 4, Nintendo Switch, Xbox One, Xbox Series X|S, Microsoft Windows, Google Stadia", Info: "es un videojuego de acción y sigilo desarrollado por IO Interactive y distribuido por Warner Bros", videoSrc: "https://youtu.be/R_Ob-fupzKg?si=X2x8jXHcaMw5-b80" }
+    ];
+
+    function updateJuegoTable(searchTerm) {
+        const filteredJuego = juegoData.filter(juego =>
+            juego.Juego.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        const tableBody = document.querySelector("#juegoTable tbody");
+        tableBody.innerHTML = "";
+
+        filteredJuego.forEach((juego, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${juego.Juego}</td>
+                <td>${juego.plataforma}</td>
+                <td>${juego.Info}</td>
+                <td>
+                    <button onclick="openVideo('${juego.videoSrc}')">Ver Video</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function openVideo(videoSrc) {
+        window.open(videoSrc, '_blank');
+    }
+
+    const searchInput = document.querySelector("#searchInput");
+    searchInput.addEventListener("input", () => {
+        updateJuegoTable(searchInput.value);
+    });
+
+    updateJuegoTable("");
+</script>
+
+</body>
+</html>
